@@ -6,6 +6,12 @@ import Register from '@/components/Register'
 import Dashboard from '@/components/Dashboard'
 import Logout from '@/components/Logout'
 import NotFound from '@/components/NotFound'
+import Profile from '@/components/Profile'
+import Dash from '@/components/Dash'
+import Category from '@/components/Category'
+import Wallet from '@/components/Wallets'
+import Expense from '@/components/Expense'
+import Income from '@/components/Income'
 
 Vue.use(Router)
 
@@ -37,8 +43,55 @@ let router = new Router({
       name: 'dashboard',
       component: Dashboard,
       meta: {
-        requiresAuth: true
-      }
+        requiresAuth: true,
+        // hideNavbar: true
+      },
+      children: [
+        {
+          path: 'dash',
+          component: Dash,
+          meta: {
+            // hideNavbar: true
+          }
+        },
+        {
+          path: 'profile',
+          // name: 'profile',
+          component: Profile,
+          meta: {
+            // hideNavbar: true,
+            dashComponent: true
+          }
+        },
+        {
+          path: 'categories',
+          component: Category,
+          meta: {
+            // hideNavbar: true
+          }
+        },
+        {
+          path: 'wallets',
+          component: Wallet,
+          meta: {
+            // hideNavbar: true
+          }
+        },
+        {
+          path: 'expense',
+          component: Expense,
+          meta: {
+            // hideNavbar: true
+          }
+        },
+        {
+          path: 'income',
+          component: Income,
+          meta: {
+            // hideNavbar: true
+          }
+        }
+      ]
     },
     {
       path: '/logout',

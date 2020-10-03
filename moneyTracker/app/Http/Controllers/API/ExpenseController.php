@@ -49,6 +49,41 @@ class ExpenseController extends Controller
         return response()->json(['success'=>$expenses], $this->successStatus);
     }
 
+    /**
+     * endpoint for retrieving expenses of a user on a given day
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request) {
+        $expenses = Expense::where('user_id', $request->user_id)->whereDate('time_made', $request->time_made)->get();
+        $categories = Spending_category::where('user_id', $request->user_id)->get();
+
+        $success = [];
+        foreach ($expenses as $expKey => $expValue) {
+            $success[$expKey] = $expValue;
+            // $success[$expKey]['category_name'] = $success[$expKey]->amount;
+            foreach ($categories as $catkey => $catValue) {
+                if ($success[$expKey]->spending_category_id == $categories[$catkey]->id) {
+                    $success[$expKey]['category_name'] = $categories[$catkey]->name;
+                }
+            }
+            
+        }
+        return response()->json(['success'=>$success], $this->successStatus);
+    }
+
+    /**
+     * endpoint for retrieving expenses of a user in a given month
+     * @return \Illuminate\Http\Response
+     */
+    public function monthlyExpenses(Request $request) {
+        $expenses = Expense::where('user_id', $request->user_id)
+        ->whereMonth('time_made', $request->month)
+        ->whereYear('time_made', $request->year)
+        ->get();
+        
+        return response()->json(['success'=>$expenses], $this->successStatus);
+    }
+
 
     /**
      * Display a listing of the resource.

@@ -1,32 +1,34 @@
 <template>
-    <div class="container register">
-        <h3>Register</h3>
-        <div class="alert alert-danger" v-if="registerError">Error signing up. Please check your inputs!</div>
-        <div class="alert alert-danger" v-if="usernameRegistered">Username "{{username}}" is already taken!</div>
-        <div class="alert alert-danger" v-if="passwordError">Password field must be equal to confirm password field!</div>
-        <div class="alert alert-danger" v-if="emailError">Email "{{email}}" is already taken!</div>
-        <div class="alert alert-danger" v-if="phoneError">Phone format should be in the form 0xxxxxxxxx</div>
-        <div class="form">
-            <form>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="username" v-model="username" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control" placeholder="email" v-model="email" required>
-                </div>
-                <div class="form-group">
-                    <input type="phone" class="form-control" placeholder="phone - 0xxxxxxxxx" v-model="phone" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="password" v-model="password" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="confirm password" v-model="c_password" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary" v-on:click="handleRegister">Sign up</button>
-                </div>
-            </form>
+    <div class="container-fluid register-container">
+        <div class="container register">
+            <h3>Register</h3>
+            <div class="alert alert-danger" v-if="registerError">Error signing up. Please check your inputs!</div>
+            <div class="alert alert-danger" v-if="usernameRegistered">Username "{{username}}" is already taken!</div>
+            <div class="alert alert-danger" v-if="passwordError">Password field must be equal to confirm password field!</div>
+            <div class="alert alert-danger" v-if="emailError">Email "{{email}}" is already taken!</div>
+            <div class="alert alert-danger" v-if="phoneError">Phone format should be in the form 0xxxxxxxxx</div>
+            <div class="form">
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="username" v-model="username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="email" v-model="email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="phone" class="form-control" placeholder="phone - 0xxxxxxxxx" v-model="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="password" v-model="password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="confirm password" v-model="c_password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" v-on:click="handleRegister">Sign up</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </template>
@@ -106,6 +108,20 @@ export default {
 <style scoped>
 .register {
     width: 40%;
-    margin-top: 100px;
+    padding-top: 100px;
+    background-color: #fff;
+    padding-bottom: 10px;
+}
+.register-container {
+    height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/money-background1.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+@media (max-width: 800px) {
+    .register {
+        width: 70%;
+        padding-top: 250px;
+    }
 }
 </style>

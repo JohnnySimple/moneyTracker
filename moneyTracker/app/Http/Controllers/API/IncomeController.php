@@ -41,6 +41,15 @@ class IncomeController extends Controller
 
 
     /**
+     * endpoints to retrieve all income of current user
+     * @return \Illuminate\Http\Response
+     */
+    public function all(Request $request) {
+        $income = Income::where('user_id', $request->user_id)->get();
+        return response()->json(['success' => $income], $this->successStatus);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

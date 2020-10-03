@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar />
+    <Navbar id="nav" v-if="!$route.meta.hideNavbar"/>
     <router-view></router-view>
   </div>
 </template>
@@ -27,4 +27,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 } */
+
 </style>

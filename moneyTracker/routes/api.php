@@ -33,10 +33,13 @@ Route::get('wallet/all/{user_id}', 'API\WalletController@all');
 
 // endpoints for recording income
 Route::post('income/add', 'API\IncomeController@add');
+Route::get('income/all/{user_id}', 'API\IncomeController@all');
 
 // endpoints for recording expense
 Route::post('expense/add', 'API\ExpenseController@add');
 Route::get('expense/all/{user_id}', 'API\ExpenseController@all');
+Route::get('expense/search/{user_id}/{time_made}', 'API\ExpenseController@search');
+Route::get('expense/monthlyExpenses/{user_id}/{month}/{year}', 'API\ExpenseController@monthlyExpenses');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
